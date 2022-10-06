@@ -13,7 +13,8 @@ export default class DatasetList extends Component {
     componentDidMount() {
         axios.get('http://localhost:5000/datasets/')
             .then(response => {
-                this.setState({ datasets: response.data })
+                console.log(response.data);
+                this.setState({ datasets: response.data });
             })
             .catch((error) => console.log(error));
     }
@@ -32,7 +33,7 @@ export default class DatasetList extends Component {
                 }
             }
             else if (this.props.filter.length !== 0) {
-                if (this.props.filter.includes(currentdataset.category.toLowerCase())) {
+                if (this.props.filter.includes(currentdataset.category?.toLowerCase())) {
                     return <Dataset dataset={currentdataset} />;
                 }
             }

@@ -15,16 +15,14 @@ def make_json(csvPath, jsonPath, data):
         csvReader = csv.DictReader(csvf)
          
         for rows in csvReader:
-            if data:    
-                key = rows['Id']
-                # Delete any unwanted elements from
-                # final JSON object
-                del rows['Id']
-                del rows['ID']
-                del rows['School']
-                output[key] = rows
-            else:
-                output = rows
+            pass
+            # if data:    
+            #     key = rows['Id']
+            #     # Delete any unwanted elements from
+            #     # final JSON object
+            #     output[key] = rows
+            # else:
+            #     output = rows
 
     with open(jsonPath, 'w', encoding='utf-8-sig') as jsonf:
         jsonf.write(json.dumps(output, indent=4))
@@ -43,18 +41,18 @@ def post_data(data):
 if __name__ == "__main__":    
     
     # Name of the file with full csv data
-    csvPath1 = './princeton_review/princeton_review_data.csv'
+    csvPath1 = './dataset-test/underInterns.csv'
 
     # Where you want the json of full data to go
-    full_data_path = './princeton_review/princeton_review.json'
+    full_data_path = './dataset-test/underInternjson.json'
 
     make_json(csvPath1, full_data_path, True)
 
     # Name of the csv file with the metadata
-    csvPath2 = './princeton_review/princeton_review_meta.csv'
+    csvPath2 = './dataset-test/underclassmen_internships.csv'
 
     # Where you want the final json object to be stored
-    metadata_path = './princeton_review/princeton_review_final.json'
+    metadata_path = './dataset-test/underclassmen_internshipsJson.json'
 
     make_json(csvPath2, metadata_path, False)
 
